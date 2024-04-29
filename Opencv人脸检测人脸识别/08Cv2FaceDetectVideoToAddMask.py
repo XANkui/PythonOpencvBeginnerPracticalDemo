@@ -127,7 +127,7 @@ def detect_faces(frame):
     # 获取人脸区域中的眼睛位置
     for (x, y, w, h) in faces:
         roi_gray = gray[y:y+h, x:x+w]
-        eyes = eye_cascade.detectMultiScale(roi_gray)
+        eyes = eye_cascade.detectMultiScale(roi_gray, scaleFactor=1.35, minNeighbors=15, minSize=(20, 20))
         if len(eyes) >= 2:
             # 计算人脸的偏转角度
             eye_centers = np.array([(x + ex + ew // 2, y + ey + eh // 2) for (ex, ey, ew, eh) in eyes])
